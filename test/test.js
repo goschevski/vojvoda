@@ -4,7 +4,7 @@ var expect = chai.expect;
 
 var _ = require('lodash');
 var $ = require('jquery');
-var Backbone = require('Backbone');
+var Backbone = require('backbone');
 Backbone.$ = $;
 
 var Vojvoda = require('../index')(_, Backbone);
