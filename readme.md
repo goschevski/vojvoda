@@ -42,7 +42,7 @@ var SomeView = Vojvoda.extend({
 ## API
 
 Vojvoda creates `subViews` namespace inside of Backbone View.
-Then by using only 3 methods, you can manipulate subviews without chance for creating memory leacks, ghost views, etc.
+Then by using only 3 methods, you can manipulate subviews without chance for creating memory leaks, ghost views, etc.
 
 #### addSubView(name, class, options)
 
