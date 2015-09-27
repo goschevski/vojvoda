@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Vojvoda test</title>
+    </head>
+    <body>
+        <!-- javascript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+
+        <script src="../../index.js"></script>
+        <script>
+            var SubSubView = Vojvoda.extend({
+                initialize: function (options) {
+                    this.options = options;
+                    console.log('Hi, I\'m a ' + this.options.text + ' view');
+                },
+
+                onDestroy: function () {
+                    console.log('Destroy ' + this.options.text + ' view');
+                }
+            });
+
+            var SubView = Vojvoda.extend({
+                initialize: function (options) {
+                    this.options = options;
+                    this.addSubView('subsub', SubSubView, { text: 'sub sub' });
+                    console.log('Hi, I\'m a ' + this.options.text + ' view');
+                },
+
+                onDestroy: function () {
+                    console.log('Destroy ' + this.options.text + ' view');
+                }
+            });
+
+            var View = Vojvoda.extend({
+                initialize: function () {
+                    this.addSubView('sub', SubView, { text: 'sub' });
+                }
+            });
+
+            var view = new View();
+            view.destroyAllSubViews();
+        </script>
+    </body>
+</html>

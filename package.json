@@ -1,0 +1,37 @@
+{
+  "name": "vojvoda",
+  "version": "1.0.0",
+  "description": "Backbone View extension for managing subviews",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goschevski/vojvoda"
+  },
+  "keywords": [
+    "vojvoda",
+    "backbone",
+    "view"
+  ],
+  "author": "Aleksandar Goševski - www.goschevski.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/goschevski/vojvoda/issues"
+  },
+  "homepage": "https://github.com/goschevski/vojvoda",
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "chai": "^3.3.0",
+    "jquery": "^2.1.4",
+    "lodash": "^3.10.1",
+    "karma-browserify": "^4.3.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-mocha": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-phantomjs-shim": "^1.1.1",
+    "karma-verbose-reporter": "0.0.3",
+    "mocha": "^2.3.3"
+  }
+}
