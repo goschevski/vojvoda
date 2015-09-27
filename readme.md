@@ -1,4 +1,4 @@
-# vojvoda [![Build Status](https://travis-ci.org/goschevski/vojvoda.svg?branch=master)](https://travis-ci.org/goschevski/vojvoda)
+# vojvoda ![Build Status](https://codeship.com/projects/bf68c980-473b-0133-5250-066ef9c7f962/status?branch=master)
 
 Backbone View extension for managing subviews.
 
