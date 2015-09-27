@@ -1,0 +1,27 @@
+{
+  "name": "vojvoda",
+  "main": "index.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/goschevski/vojvoda",
+  "authors": [
+    "Aleksandar Goševski - www.goschevski.com"
+  ],
+  "description": "Backbone View extension for managing subviews",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "vojvoda",
+    "backbone",
+    "view"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
