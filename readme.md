@@ -62,11 +62,10 @@ var HomePageView = Vojvoda.extend({
 });
 ```
 
-#### destroySubView(name, context)
+#### destroySubView(name)
 
-This method will destroy subview and all subviews of that subview recursivly.
+This method will destroy subview and all nested subviews recursivly.
 - `name` *(string)* - key of sub view to destroy
-- `context` *(object)* - context used internally for recursion
 
 ##### Example:
 ```js
