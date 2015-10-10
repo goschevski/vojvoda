@@ -21,7 +21,7 @@
     "url": "https://github.com/goschevski/vojvoda/issues"
   },
   "homepage": "https://github.com/goschevski/vojvoda",
-  "dependencies": {
+  "devDependencies": {
     "backbone": "^1.2.3",
     "chai": "^3.3.0",
     "jquery": "^2.1.4",
