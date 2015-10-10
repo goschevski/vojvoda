@@ -14,11 +14,37 @@ var HomeView = Vojvoda.extend({
     },
 
     onDestroy: function () {
-        window.arr.push(this.options.key);
+        window.onDestroy.push(this.options.key);
+    },
+
+    beforeEachDestroy: function () {
+        window.beforeEachDestroy.push(this.options.key);
+    },
+
+    remove: function () {
+        window.remove.push(this.options.key);
     }
 });
 
+function cleanArray (actual) {
+    var newArray = [];
+
+    for (var i = 0; i < actual.length; i++) {
+        if (actual[i]) {
+            newArray.push(actual[i]);
+        }
+    }
+
+    return newArray;
+}
+
 describe('Base View', function () {
+    beforeEach(function () {
+        window.remove = [];
+        window.onDestroy = [];
+        window.beforeEachDestroy = [];
+    });
+
     describe('Methods', function () {
         var base, home, sub;
 
@@ -118,20 +144,7 @@ describe('Base View', function () {
     });
 
     describe('Deep nesting', function () {
-        function cleanArray (actual) {
-            var newArray = [];
-
-            for (var i = 0; i < actual.length; i++) {
-                if (actual[i]) {
-                    newArray.push(actual[i]);
-                }
-            }
-
-            return newArray;
-        }
-
         var first;
-        window.arr = [];
 
         beforeEach(function () {
             first = new Vojvoda();
@@ -144,7 +157,7 @@ describe('Base View', function () {
 
         it('should remove all subviews', function () {
             first.destroyAllSubViews();
-            var newArray = cleanArray(window.arr);
+            var newArray = cleanArray(window.onDestroy);
             expect(newArray[0]).to.equal('second');
             expect(newArray[1]).to.equal('third');
             expect(newArray[2]).equal('fourth');
@@ -154,12 +167,78 @@ describe('Base View', function () {
 
         it('should remove all nested subviews', function () {
             first.destroySubView('second');
-            var newArray = cleanArray(window.arr);
+            var newArray = cleanArray(window.onDestroy);
             expect(newArray[0]).to.equal('second');
             expect(newArray[1]).to.equal('third');
             expect(newArray[2]).equal('fourth');
             expect(newArray[3]).equal('fifth');
             expect(newArray[4]).equal('sixt');
+        });
+    });
+
+    describe('Remove in order', function () {
+        var first;
+
+        beforeEach(function () {
+            first = new Vojvoda();
+            first.addSubView('second', HomeView, { key: 'second' });
+            first.subViews.second.addSubView('third', HomeView, { key: 'third' });
+            first.subViews.second.subViews.third.addSubView('fourth', HomeView, { key: 'fourth' });
+            first.subViews.second.subViews.third.subViews.fourth.addSubView('fifth', HomeView, { key: 'fifth' });
+            first.subViews.second.subViews.third.subViews.fourth.subViews.fifth.addSubView('sixt', HomeView, { key: 'sixt' });
+        });
+
+        it('should remove all subviews in order', function () {
+            first.destroyAllSubViews();
+            var newArray = cleanArray(window.remove);
+            expect(newArray[4]).to.equal('second');
+            expect(newArray[3]).to.equal('third');
+            expect(newArray[2]).equal('fourth');
+            expect(newArray[1]).equal('fifth');
+            expect(newArray[0]).equal('sixt');
+        });
+
+        it('should remove all nested subviews in order', function () {
+            first.destroySubView('second');
+            var newArray = cleanArray(window.remove);
+            expect(newArray[4]).to.equal('second');
+            expect(newArray[3]).to.equal('third');
+            expect(newArray[2]).equal('fourth');
+            expect(newArray[1]).equal('fifth');
+            expect(newArray[0]).equal('sixt');
+        });
+    });
+
+    describe('Options', function () {
+        var first;
+
+        beforeEach(function () {
+            first = new Vojvoda();
+            first.addSubView('second', HomeView, { key: 'second' });
+            first.subViews.second.addSubView('third', HomeView, { key: 'third' });
+            first.subViews.second.subViews.third.addSubView('fourth', HomeView, { key: 'fourth' });
+            first.subViews.second.subViews.third.subViews.fourth.addSubView('fifth', HomeView, { key: 'fifth' });
+            first.subViews.second.subViews.third.subViews.fourth.subViews.fifth.addSubView('sixt', HomeView, { key: 'sixt' });
+        });
+
+        it('should execute beforeEachDestroy before each destroy', function () {
+            first.destroyAllSubViews({
+                beforeEachDestroy: function (subview) {
+                    subview.beforeEachDestroy();
+                }
+            });
+            var newArray = cleanArray(window.beforeEachDestroy);
+            expect(newArray[0]).to.equal('second');
+            expect(newArray[1]).to.equal('third');
+            expect(newArray[2]).equal('fourth');
+            expect(newArray[3]).equal('fifth');
+            expect(newArray[4]).equal('sixt');
+        });
+
+        it('should not execute remove method', function () {
+            first.destroySubView('second', { remove: false });
+            var newArray = cleanArray(window.remove);
+            expect(newArray.length).equal(0);
         });
     });
 });
