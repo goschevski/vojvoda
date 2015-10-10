@@ -22,13 +22,10 @@
 
             // recursion for destoying sub view and all sub views of that subview, and all sub views of sub views of subview, and all ...
             // first argument is the name of the subview
-            // second arugment is context (by default this)
-            // you never need to provide second argument, it just for recursion when deleting sub views
             // it will execute onDestroy method if it is defined
-            destroySubView: function (name, context) {
-                context = context || this;
-                if (typeof context.subViews[name] !== 'undefined') {
-                    var view = context.subViews[name];
+            destroySubView: function (name) {
+                if (typeof this.subViews[name] !== 'undefined') {
+                    var view = this.subViews[name];
 
                     // execute onDestroy method
                     if (_.isFunction(view.onDestroy)) {
@@ -45,7 +42,7 @@
                     view.off();
 
                     // delete reference of subview
-                    delete context.subViews[name];
+                    delete this.subViews[name];
                 } else {
                     throw new Error('View "' + name + '" doesn\'t exist.');
                 }

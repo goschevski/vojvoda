@@ -8,7 +8,15 @@ var Backbone = require('backbone');
 Backbone.$ = $;
 
 var Vojvoda = require('../index')(_, Backbone);
-var HomeView = require('../index')(_, Backbone);
+var HomeView = Vojvoda.extend({
+    initialize: function (options) {
+        this.options = options || {};
+    },
+
+    onDestroy: function () {
+        window.arr.push(this.options.key);
+    }
+});
 
 describe('Base View', function () {
     describe('Methods', function () {
@@ -106,6 +114,52 @@ describe('Base View', function () {
         it('should remove grandchild subview', function () {
             base.destroyAllSubViews();
             should.not.exist(home.subViews.sub);
+        });
+    });
+
+    describe('Deep nesting', function () {
+        function cleanArray (actual) {
+            var newArray = [];
+
+            for (var i = 0; i < actual.length; i++) {
+                if (actual[i]) {
+                    newArray.push(actual[i]);
+                }
+            }
+
+            return newArray;
+        }
+
+        var first;
+        window.arr = [];
+
+        beforeEach(function () {
+            first = new Vojvoda();
+            first.addSubView('second', HomeView, { key: 'second' });
+            first.subViews.second.addSubView('third', HomeView, { key: 'third' });
+            first.subViews.second.subViews.third.addSubView('fourth', HomeView, { key: 'fourth' });
+            first.subViews.second.subViews.third.subViews.fourth.addSubView('fifth', HomeView, { key: 'fifth' });
+            first.subViews.second.subViews.third.subViews.fourth.subViews.fifth.addSubView('sixt', HomeView, { key: 'sixt' });
+        });
+
+        it('should remove all subviews', function () {
+            first.destroyAllSubViews();
+            var newArray = cleanArray(window.arr);
+            expect(newArray[0]).to.equal('second');
+            expect(newArray[1]).to.equal('third');
+            expect(newArray[2]).equal('fourth');
+            expect(newArray[3]).equal('fifth');
+            expect(newArray[4]).equal('sixt');
+        });
+
+        it('should remove all nested subviews', function () {
+            first.destroySubView('second');
+            var newArray = cleanArray(window.arr);
+            expect(newArray[0]).to.equal('second');
+            expect(newArray[1]).to.equal('third');
+            expect(newArray[2]).equal('fourth');
+            expect(newArray[3]).equal('fifth');
+            expect(newArray[4]).equal('sixt');
         });
     });
 });
