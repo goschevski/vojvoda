@@ -1,0 +1,72 @@
+{
+    "requireCurlyBraces": true,
+    "requireSpaceAfterKeywords": true,
+    "requireSpaceBeforeBlockStatements": true,
+    "requireParenthesesAroundIIFE": true,
+    "requireSpacesInConditionalExpression": true,
+    "requireSpacesInFunctionExpression": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+    "requireSpacesInAnonymousFunctionExpression": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+    "requireSpacesInNamedFunctionExpression": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+    "requireSpacesInFunctionDeclaration": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+    "requireSpacesInFunction": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+    "requireBlocksOnNewline": true,
+    "disallowPaddingNewlinesInBlocks": true,
+    "requirePaddingNewLinesAfterBlocks": true,
+    "disallowEmptyBlocks": true,
+    "requireSpacesInsideObjectBrackets": "all",
+    "disallowSpacesInsideArrayBrackets": "all",
+    "disallowSpacesInsideParentheses": true,
+    "disallowQuotedKeysInObjects": true,
+    "disallowDanglingUnderscores": {
+        "allExcept": ["_bindRoutes"]
+    },
+    "disallowSpaceAfterObjectKeys": true,
+    "requireSpaceBeforeObjectValues": true,
+    "requireCommaBeforeLineBreak": true,
+    "disallowSpaceBeforePostfixUnaryOperators": [
+        "++",
+        "--"
+    ],
+    "requireSpaceBeforeBinaryOperators": true,
+    "requireSpaceAfterBinaryOperators": true,
+    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+    "disallowMultipleLineStrings": true,
+    "disallowMultipleLineBreaks": true,
+    "disallowMultipleSpaces": true,
+    "requireSemicolons": true,
+    "disallowMixedSpacesAndTabs": true,
+    "disallowTrailingWhitespace": true,
+    "disallowTrailingComma": true,
+    "requireCapitalizedConstructors": true,
+    "requireDotNotation": true,
+    "requireSpaceAfterLineComment": true,
+    "disallowNewlineBeforeBlockStatements": true,
+    "validateQuoteMarks": "'",
+    "validateParameterSeparator": ", ",
+    "disallowMultipleVarDecl": true,
+    "disallowKeywordsOnNewLine": [
+        "else",
+        "else if",
+        "catch",
+        "do",
+        "while"
+    ],
+    "safeContextKeyword": [
+        "that"
+    ]
+}

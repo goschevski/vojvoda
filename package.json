@@ -4,8 +4,15 @@
   "description": "Backbone View extension for managing subviews",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start"
+    "test": "./node_modules/karma/bin/karma start",
+    "jscs": "./node_modules/jscs/bin/jscs -c jscs.json index.js",
+    "jshint": "./node_modules/jshint/bin/jshint -c jshint.json index.js"
   },
+  "pre-commit": [
+    "test",
+    "jscs",
+    "jshint"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/goschevski/vojvoda"
@@ -25,13 +32,16 @@
     "backbone": "^1.2.3",
     "chai": "^3.3.0",
     "jquery": "^2.1.4",
-    "lodash": "^3.10.1",
+    "jscs": "^2.3.0",
+    "jshint": "^2.8.0",
     "karma-browserify": "^4.3.0",
     "karma-chrome-launcher": "^0.2.0",
     "karma-mocha": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-phantomjs-shim": "^1.1.1",
     "karma-verbose-reporter": "0.0.3",
-    "mocha": "^2.3.3"
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.3",
+    "pre-commit": "^1.1.1"
   }
 }
