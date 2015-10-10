@@ -1,7 +1,7 @@
 {
   "name": "vojvoda",
   "main": "index.js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://github.com/goschevski/vojvoda",
   "authors": [
     "Aleksandar Goševski - www.goschevski.com"
