@@ -87,7 +87,7 @@ var HomePageView = Vojvoda.extend({
 });
 ```
 
-#### destroyAllSubView(options, context)
+#### destroyAllSubViews(options, context)
 
 This method will destroy all subviews recursivly.
 - `options` *(object)* - options (defaults: `{ remove: true, beforeEachDestroy: _.noop }`)
@@ -102,13 +102,13 @@ var HomePageView = Vojvoda.extend({
     },
 
     hide: function () {
-        this.destroyAllSubView();
+        this.destroyAllSubViews();
         // this will run destroySubView for each subView
     }
 });
 ```
 
-#### Options for destroySubView and destroyAllSubView
+#### Options for destroySubView and destroyAllSubViews
 - `remove: true` - if you pass false, vojvoda will not execute remove method
 - `beforeEachDestroy: _.noop` - function will be executed before each destroySubView where argument is subview
 
