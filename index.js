@@ -48,6 +48,10 @@
                     // remove view from the DOM
                     if (options.remove) {
                         view.remove();
+                    } else {
+                        // if we don't execute remove mehtod
+                        // we should manually call stopListening
+                        view.stopListening();
                     }
                     // removes all callbacks on view
                     view.off();
